@@ -26,7 +26,7 @@
 
 @implementation UIImage (Stretch)
 
-- (UIImage*)stretchableImageWithWithCapInsets:(UIEdgeInsets)capInsets
+- (UIImage *)stretchableImageWithWithCapInsets:(UIEdgeInsets)capInsets
 {
   if ([[[UIDevice currentDevice] systemVersion] hasPrefix:@"4"])
   {

@@ -26,6 +26,6 @@
 
 @interface UIImage (Stretch)
 
-- (UIImage*)stretchableImageWithWithCapInsets:(UIEdgeInsets)capInsets NS_AVAILABLE_IOS(4_0);
+- (UIImage *)stretchableImageWithWithCapInsets:(UIEdgeInsets)capInsets NS_AVAILABLE_IOS(4_0);
 
 @end

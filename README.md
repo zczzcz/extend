@@ -1,4 +1,4 @@
 extend
 ======
 
-Extend class
+Extend class for cocoa framework

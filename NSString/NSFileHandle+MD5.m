@@ -34,11 +34,11 @@
   CC_MD5_Init(&md5_ctx);
   
   NSData *fileData;
-  do {
+  do
+  {
     fileData = [self readDataOfLength:1024];
     CC_MD5_Update(&md5_ctx, [fileData bytes], [fileData length]);
-  }
-  while([fileData length]);
+  }while([fileData length]);
   
   unsigned char result[CC_MD5_DIGEST_LENGTH];
   CC_MD5_Final(result, &md5_ctx);
@@ -48,8 +48,8 @@
   {
     [hashString appendFormat:@"%02x",result[i]];
   }
+  
   return [hashString lowercaseString];
-
 }
 
 @end

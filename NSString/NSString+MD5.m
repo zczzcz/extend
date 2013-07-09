@@ -23,6 +23,7 @@
 //
 
 #import "NSString+MD5.h"
+#import <CommonCrypto/CommonDigest.h>
 
 @implementation NSString (MD5)
 

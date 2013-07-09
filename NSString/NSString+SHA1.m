@@ -23,6 +23,7 @@
 //
 
 #import "NSString+SHA1.h"
+#import <CommonCrypto/CommonDigest.h>
 
 @implementation NSString (SHA1)
 

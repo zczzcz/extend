@@ -24,6 +24,7 @@
 
 
 #import "NSFileHandle+MD5.h"
+#import <CommonCrypto/CommonDigest.h>
 
 @implementation NSFileHandle (MD5)
 

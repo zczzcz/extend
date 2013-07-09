@@ -26,6 +26,15 @@
 
 @interface NSString (Regular)
 
+/**
+ * Match the mobile number which belonged to China.Return the match result.
+ */
 - (BOOL)isMobileNumber;
+
+/**
+ * Match the E-mail address,return the match result.But it should be update,because the top-level
+ * domain has been updated.
+ */
+- (BOOL)isEmailAddress;
 
 @end

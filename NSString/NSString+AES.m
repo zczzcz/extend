@@ -25,6 +25,7 @@
 #import "NSString+AES.h"
 #import <CommonCrypto/CommonCryptor.h>
 
+#if defined(CRYPT_RESULT_ENCODE_WAY) && CRYPT_RESULT_ENCODE_WAY
 int convertHexChar(char hex_char)
 {
   int int_ch = -1;
@@ -42,9 +43,13 @@ int convertHexChar(char hex_char)
   }
   return int_ch;
 }
+#endif
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NSString (AES)
 
+#if defined(CRYPT_RESULT_ENCODE_WAY) && CRYPT_RESULT_ENCODE_WAY
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 + (NSString *)__convertToHexString:(NSData *)data
 {
@@ -71,7 +76,7 @@ int convertHexChar(char hex_char)
   
   return [NSData dataWithBytes:bytes length:sizeof(bytes)];
 }
-
+#endif
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString *)__aesCryptWithkey:(NSString *)key
                              iv:(NSString *)iv
@@ -124,14 +129,22 @@ int convertHexChar(char hex_char)
     //so won't call free function
     if (op == kCCEncrypt)
     {
+#if defined(CRYPT_RESULT_ENCODE_WAY) && CRYPT_RESULT_ENCODE_WAY
       return [[self class] __convertToHexString:[NSData dataWithBytesNoCopy:buffer
                                                                      length:dataOutMoved]];
+#else
+      return nil;
+#endif
     }
     else
     {
+#if defined(CRYPT_RESULT_ENCODE_WAY) && CRYPT_RESULT_ENCODE_WAY
       return [[[NSString alloc] initWithData:[NSData dataWithBytesNoCopy:buffer
                                                                   length:dataOutMoved]
                                     encoding:NSUTF8StringEncoding] autorelease];
+#else
+      return nil;
+#endif
     }
   }
   free(buffer);

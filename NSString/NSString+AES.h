@@ -26,6 +26,12 @@
 
 #define CRYPT_RESULT_ENCODE_WAY (1) //1 hex 0 base64
 
+#if defined(CRYPT_RESULT_ENCODE_WAY) && CRYPT_RESULT_ENCODE_WAY
+
+#else
+#import "NSData+Base64.h"
+#endif
+
 @interface NSString (AES)
 
 /**

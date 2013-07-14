@@ -90,7 +90,11 @@ int convertHexChar(char hex_char)
   }
   else
   {
+#if defined(CRYPT_RESULT_ENCODE_WAY) && CRYPT_RESULT_ENCODE_WAY
     data = [self __hexStringConvertToData];
+#else
+    data = [NSData dataWithBase64EncodedString:self];
+#endif
   }
   
   //buffer
@@ -133,18 +137,14 @@ int convertHexChar(char hex_char)
       return [[self class] __convertToHexString:[NSData dataWithBytesNoCopy:buffer
                                                                      length:dataOutMoved]];
 #else
-      return nil;
+      return [[NSData dataWithBytesNoCopy:buffer length:dataOutMoved] base64Encoding];
 #endif
     }
     else
     {
-#if defined(CRYPT_RESULT_ENCODE_WAY) && CRYPT_RESULT_ENCODE_WAY
       return [[[NSString alloc] initWithData:[NSData dataWithBytesNoCopy:buffer
                                                                   length:dataOutMoved]
                                     encoding:NSUTF8StringEncoding] autorelease];
-#else
-      return nil;
-#endif
     }
   }
   free(buffer);

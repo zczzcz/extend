@@ -151,6 +151,7 @@ static const void *imgKey = &imgKey;
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)stopShake
 {
+  [NSObject cancelPreviousPerformRequestsWithTarget:self];//fix bug:stop random animation
 #if defined(SHAKE_UIVIEW_ANIMATION) && SHAKE_UIVIEW_ANIMATION
   self.isEnd = YES;
   self.transform = CGAffineTransformIdentity;
